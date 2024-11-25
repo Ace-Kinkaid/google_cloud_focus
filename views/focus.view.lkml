@@ -121,8 +121,8 @@ view: focus {
         UNNEST(usage_cost_data.credits) AS c), 0) AS BilledCost,
     "TODO - replace with the billing account ID in your detailed usage export table name" AS BillingAccountId,
     usage_cost_data.currency AS BillingCurrency,
-    PARSE_TIMESTAMP("%Y%m", invoice.month, "America/Los_Angeles") AS BillingPeriodStart,
-    TIMESTAMP(DATE_SUB(DATE_ADD(PARSE_DATE("%Y%m", invoice.month), INTERVAL 1 MONTH), INTERVAL 1 DAY), "America/Los_Angeles") AS BillingPeriodEnd,
+    DATETIME(PARSE_TIMESTAMP("%Y%m", invoice.month, "America/Los_Angeles")) AS BillingPeriodStart,
+    DATETIME(TIMESTAMP(DATE_SUB(DATE_ADD(PARSE_DATE("%Y%m", invoice.month), INTERVAL 1 MONTH), INTERVAL 1 DAY), "America/Los_Angeles")) AS BillingPeriodEnd,
     CASE LOWER(cost_type)
       WHEN "regular" THEN "usage"
       WHEN "tax" THEN "tax"
