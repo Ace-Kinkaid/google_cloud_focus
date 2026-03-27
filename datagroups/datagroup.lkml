@@ -1,3 +1,3 @@
 datagroup: daily_datagroup {
-  sql_trigger: CURRENT_DATE() ;;
+  sql_trigger: SELECT CURRENT_DATE() ;;
 }
